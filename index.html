@@ -1,0 +1,230 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>使用HTML5新增标签实现页面布局</title>
+    <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <style>
+    section {
+        width: 800px;
+        margin: 0 auto;
+    }
+    
+    article {
+        width: 400px;
+        float: left;
+        height: 100%;
+        background-color: #AFAFAF;
+    }
+    
+    aside {
+        width: 400px;
+        float: right;
+        height: 100%;
+        background-color: #7f7f7f;
+    }
+    
+    header {
+        width: 100%;
+        background-color: #ddd;
+        text-align: center;
+    }
+    
+    footer {
+        width: 100%;
+        background-color: #FFF;
+    }
+    </style>
+</head>
+
+<body>
+    <section>
+        <div class="panel panel-default">
+            <!-- Default panel contents -->
+            <div class="panel-heading">交易设定</div>
+            <!-- Table -->
+            <div>
+                <table border="1" class="table">
+                    <tr>
+                        <td width="60">币种</td>
+                        <td width="200">OK近期卖一价格</td>
+                        <td width="200">OK近期卖一深度</td>
+                        <td width="60">当前差价</td>
+                        <td width="200">ok远期买一价格</td>
+                        <td width="200">ok远期买一深度</td>
+                    </tr>
+                    <tr>
+                        <td>BTC</td>
+                        <td id="okBtcTSellPrice1">&nbsp;</td>
+                        <td id="okBtcTSellDepth1">&nbsp;</td>
+                        <td id="BtcTrueGapPrice1">&nbsp;</td>
+                        <td id="okBtcQBuyPrice1">&nbsp;</td>
+                        <td id="okBtcQBuyDepth1">&nbsp;</td>
+                    </tr>
+                    <tr>
+                        <td>LTC</td>
+                        <td id="okLtcTSellPrice1">&nbsp;</td>
+                        <td id="okLtcTSellDepth1">&nbsp;</td>
+                        <td id="LtcTrueGapPrice1">&nbsp;</td>
+                        <td id="okLtcQBuyPrice1">&nbsp;</td>
+                        <td id="okLtcQBuyDepth1">&nbsp;</td>
+                    </tr>
+                </table>
+            </div>
+            <div>
+                <table border="1" class="table">
+                    <tr>
+                        <td width="60">币种</td>
+                        <td width="200">OK近期买一价格</td>
+                        <td width="200">OK近期买一深度</td>
+                        <td width="60">当前差价</td>
+                        <td width="200">ok远期卖一价格</td>
+                        <td width="200">ok远期卖一深度</td>
+                    </tr>
+                    <tr>
+                        <td>BTC</td>
+                        <td id="okBtcTBuyPrice1">&nbsp;</td>
+                        <td id="okBtcTBuyDepth1">&nbsp;</td>
+                        <td id="BtcTrueGapPrice2">&nbsp;</td>
+                        <td id="okBtcQSellPrice1">&nbsp;</td>
+                        <td id="okBtcQSellDetph1">&nbsp;</td>
+                    </tr>
+                    <tr>
+                        <td>LTC</td>
+                        <td id="okLtcTBuyPrice1">&nbsp;</td>
+                        <td id="okLtcTBuyDepth1">&nbsp;</td>
+                        <td id="LtcTrueGapPrice2">&nbsp;</td>
+                        <td id="okLtcQSellPrice1">&nbsp;</td>
+                        <td id="okLtcQSellDetph1">&nbsp;</td>
+                    </tr>
+                </table>
+            </div>
+            <table border="1" class="table">
+                <tr>
+                    <td width="60">币种</td>
+                    <td width="60">最小数量</td>
+                    <td width="60">最大数量</td>
+                    <td width="60">差价下限</td>
+                    <td width="60">价差上限</td>
+                    <td width="60">正向套利限制</td>
+                    <td width="60">反向套利限制</td>
+                    <td width="60">启用</td>
+                </tr>
+                <tr>
+                    <td>BTC</td>
+                    <td id="ReadyAmount">
+                        <input type="number" name="BtcReadyMinAmount" id="BtcReadyMinAmount" min="0.5" max="1" />
+                    </td>
+                    <td id="ReadyGapPrice">
+                        <input type="number" name="BtcReadyMaxAmount" id="BtcReadyMaxAmount" min="0.5" max="1" />
+                    </td>
+                    <td id="ReadyGapPrice">
+                        <input type="number" name="BtcReadyMinGap" id="BtcReadyMinGap" min="0.5" max="1" />
+                    </td>
+                    <td>
+                        <input type="number" name="BtcReadyMaxGap" id="BtcReadyMaxGap" min="0.5" max="1" />
+                    </td>
+                    <td>
+                        <input type="number" name="BtcForward" id="BtcForward" min="0.5" max="1" />
+                    </td>
+                    <td>
+                        <input type="number" name="BtcBackward" id="BtcBackward" min="0.5" max="1" />
+                    </td>
+                    <td>
+                        <label for="checkbox">
+                            <input type="checkbox" name="checkbox1" id="checkbox1">启用</label>
+                    </td>
+                </tr>
+                <tr>
+                    <td>LTC</td>
+                    <td id="ReadyAmount">
+                        <input type="number" name="LtcReadyMinAmount" id="LtcReadyMinAmount" min="0.5" max="1" />
+                    </td>
+                    <td id="ReadyGapPrice">
+                        <input type="number" name="LtcReadyMaxAmount" id="LtcReadyMaxAmount" min="0.5" max="1" />
+                    </td>
+                    <td id="ReadyGapPrice">
+                        <input type="number" name="LtcReadyMinGap" id="LtcReadyMinGap" min="0.5" max="1" />
+                    </td>
+                    <td>
+                        <input type="number" name="LtcReadyMaxGap" id="LtcReadyMaxGap" min="0.5" max="1" />
+                    </td>
+                    <td>
+                        <input type="number" name="LtcForward" id="LtcForward" min="0.5" max="1" />
+                    </td>
+                    <td>
+                        <input type="number" name="LtcBackward" id="LtcBackward" min="0.5" max="1" />
+                    </td>
+                    <td>
+                        <label for="checkbox">
+                            <input type="checkbox" name="checkbox2" id="checkbox2">启用</label>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </section>
+    <section>
+        <div>
+            <table border="1">
+                <caption>
+                    订单汇总
+                </caption>
+                <tbody>
+                    <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">币种</th>
+                        <th scope="col">买入市场</th>
+                        <th scope="col">卖出市场</th>
+                        <th scope="col">数量</th>
+                        <th scope="col">预计利润</th>
+                        <th scope="col">实际利润</th>
+                        <th scope="col">状态</th>
+                        <th scope="col">时间</th>
+                        <th scope="col">操作</th>
+                    </tr>
+                    <tr>
+                        <td width="95">&nbsp;</td>
+                        <td width="95">&nbsp;</td>
+                        <td width="95">&nbsp;</td>
+                        <td width="95">&nbsp;</td>
+                        <td width="95">&nbsp;</td>
+                        <td width="95">&nbsp;</td>
+                        <td width="95">&nbsp;</td>
+                        <td width="95">&nbsp;</td>
+                        <td width="95">&nbsp;</td>
+                        <td width="95">&nbsp;</td>
+                    </tr>
+                    <tr>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+</body>
+<script language="JavaScript" type="text/javascript" src="js/jquery.min.js"></script>
+<script language="JavaScript" type="text/javascript" src="js/bootstrap.min.js"></script>
+<script language="JavaScript" type="text/javascript" src="js/getprice.js"></script>
+<script language="JavaScript" type="text/javascript" src="js/okfuture.js"></script>
+<script language="JavaScript" type="text/javascript" src="js/md5.js"></script>
+<script type="text/javascript">
+// initDatabase();
+// GetOkLtcPrice();
+// GetOkBtcPrice();
+// setInterval("GetOkLtcPrice()", 1000);
+// setInterval("GetOkBtcPrice()", 1000);
+// setInterval("PriceGapCheck()", 1000);
+// OkTrade(1, 2.8, "ltc_usd", 1, "this_week", 10, 0);
+</script>
+
+</html>
